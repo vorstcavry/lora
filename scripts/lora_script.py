@@ -5,7 +5,7 @@ from lora_extract import create_ui
 from network import NetworkOnDisk
 from ui_extra_networks_lora import ExtraNetworksPageLora
 from extra_networks_lora import ExtraNetworkLora
-from modules import script_callbacks, extra_networks, ui_extra_networks, sd_model_checkpoint # pylint: disable=unused-import
+from modules import script_callbacks, extra_networks, ui_extra_networks, ui_models # pylint: disable=unused-import
 
 
 re_lora = re.compile("<lora:([^:]+):")
@@ -15,7 +15,7 @@ def before_ui():
     ui_extra_networks.register_page(ExtraNetworksPageLora())
     networks.extra_network_lora = ExtraNetworkLora()
     extra_networks.register_extra_network(networks.extra_network_lora)
-    sd_model_checkpoint.extra_ui.append(create_ui)
+    ui_models.extra_ui.append(create_ui)
 
 
 def create_lora_json(obj: NetworkOnDisk):
